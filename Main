@@ -39,14 +39,15 @@ public class Main {
             System.out.println("Do you want to: ");
             System.out.println("<1> Create/Request Booking(s)");
             System.out.println("<2> View Booking(s)");
+            System.out.println("<3> Quit")
             systemOption = input.nextInt();
             input.nextLine();
 
-            if (systemOption != 1 || systemOption != 2)
+            if (systemOption != 1 || systemOption != 2 || systemOption != 3)
             {
                 System.out.println("Invalid operation");
             }
-        } while (systemOption != 1 || systemOption != 2);
+        } while (systemOption != 1 || systemOption != 2 || systemOption != 3);
         
         return systemOption;
     }
@@ -60,30 +61,35 @@ public class Main {
             if (loginOption == 1) 
             {
                 clientRegister();
-                loginUI();
+                break;
             }   
             
             else if (loginOption == 2) 
             {
                 clientLogin();
-                systemUI();
+                break;
             }
             
             else 
             {
                 System.out.println("Invalid option. Please choose again.");
-                loginUI();
+                break;
             } 
-        }while (loginOption != 1 || loginOption != 2);
+        }while (loginOption != 2);
 
         int systemOption = systemUI();
         if (systemOption == 1)
         {
-            //create bookings and save the details in respective user text file
+            //create bookings and save the details in respective user text file (make a method in client class and save the booking details in text file)
+        }
+        else if (systemOption  == 2)
+        {
+            //view all bookings and a new interface for the user to update, cancel and search for certain booking 
         }
         else
         {
-            //view all bookings and a new interface for the user to update, cancel and search for certain booking
+            System.out.println("Account logout successfully.");
+            break;
         }
         
     }
