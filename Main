@@ -5,7 +5,7 @@ public class Main {
 
     Scanner input = new Scanner(System.in);
 
-    public int loginUI(int loginOption)
+    private int loginUI(int loginOption)
     {
         // Display welcome message and options
         System.out.println("Welcome to the e-Hailing Booking System!");
@@ -17,25 +17,64 @@ public class Main {
         return loginOption;
     }
 
-    public boolean clientRegister()
+    private void clientRegister()
     {
         // Registration
-        System.out.println("Account has been created successfully.");
+        private String username;
+        private String password;
+        private String email;
+        private char gender;
+        private String contactNumber;
+
+        Client c = new Client();
+        System.out.println("Username: ");
+        username = input.nextLine();
+        c.setUsername(username);
+
+        System.out.println("Password: ");
+        password = input.nextLine();
+        c.setPassword(password);
+
+        System.out.println("Email: ");
+        email = input.nextLine();
+        c.setEmail(email);
+
+        System.out.println("Gender (M/F) : ");
+        gender = input.nextLine();
+        gender = gender.toUpperCase();
+        c.setGender(gender);
+
+        System.out.println("Contact Number: ");
+        contactNumber = input.nextLine();
+        c.setContactNumber(contactNumber);
+
+        System.out.println("\nAccount has been created successfully.");
     }
 
-    public boolean clientLogin()
+    private boolean clientLogin()
     {
-         // Login
-         System.out.println("Login successfully.");
+        // Login
+        String usernameInput;
+        String passwordInput;
+
+        System.out.println("Please enter your username: ");
+        usernameInput = input.nextLine();
+
+        System.out.println("Please enter your password: ");
+        passwordInput = input.nextLine();
+
+        System.out.println("Login successfully.");
+        return true;
     }
 
-    public int systemUI()
+    private int systemUI()
     {
         int systemOption;
         do 
         {
-            System.out.println("Dear Mr/Ms " + "username" + "\t\t\t\tCurrent Date: " + "date");
-            System.out.println("Welcome to e-Hailing Booking System \t\t\tCurrent Time: " + "time");
+            System.out.println("Dear Mr/Ms " + "username" + "               Current Date: " + "date");
+            System.out.println("Welcome to e-Hailing Booking System         Current Time: " + "time");
+            System.out.println("____________________________________________________________________________");
             System.out.println("Do you want to: ");
             System.out.println("<1> Create/Request Booking(s)");
             System.out.println("<2> View Booking(s)");
