@@ -1,0 +1,58 @@
+public class Client {
+
+    private String username;
+    private String password;
+    private String email;
+    private char gender;
+    private String contactNumber;
+    //view, create and delete bookings waiting to be done
+
+    public String getUsername()
+    {
+        return username;
+    }
+    public void setUsername(String aUsername)
+    {
+        username = aUsername;
+    }
+
+
+    public String getPassword()
+    {
+        return password;
+    }
+    public void setPassword(String aPassword)
+    {
+        password = aPassword;
+    }
+
+
+    public String getEmail()
+    {
+        return email;
+    }
+    public void setEmail(String aEmail)
+    {
+        email = aEmail;
+    }
+
+
+    public char getGender()
+    {
+        return gender;
+    }
+    public void setGender(char aGender)
+    {
+        gender = aGender;
+    }
+
+
+    public String getContactNumber()
+    {
+        return contactNumber;
+    }
+    public void setContactNumber(String aContactNumber)
+    {
+        contactNumber = aContactNumber;
+    }
+}
