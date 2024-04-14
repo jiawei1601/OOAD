@@ -5,46 +5,68 @@ public class Main {
 
     Scanner input = new Scanner(System.in);
 
-    private int loginUI(int option)
+    public int loginUI(int loginOption)
     {
         // Display welcome message and options
         System.out.println("Welcome to the e-Hailing Booking System!");
         System.out.println("1. Register a new account");
         System.out.println("2. Login");
         System.out.print("Choose an option: ");
-        option = input.nextInt();
+        loginOption = input.nextInt();
         input.nextLine(); // Consume newline
-        return option;
+        return loginOption;
     }
 
-    private boolean clientRegister()
+    public boolean clientRegister()
     {
         // Registration
         System.out.println("Account has been created successfully.");
     }
 
-    private boolean clientLogin()
+    public boolean clientLogin()
     {
          // Login
          System.out.println("Login successfully.");
     }
 
+    public int systemUI()
+    {
+        int systemOption;
+        do 
+        {
+            System.out.println("Dear Mr/Ms " + "username" + "\t\t\t\tCurrent Date: " + "date");
+            System.out.println("Welcome to e-Hailing Booking System \t\t\tCurrent Time: " + "time");
+            System.out.println("Do you want to: ");
+            System.out.println("<1> Create/Request Booking(s)");
+            System.out.println("<2> View Booking(s)");
+            systemOption = input.nextInt();
+            input.nextLine();
+
+            if (systemOption != 1 || systemOption != 2)
+            {
+                System.out.println("Invalid operation");
+            }
+        } while (systemOption != 1 || systemOption != 2);
+        
+        return systemOption;
+    }
+
     public static void main(String[] args) 
     {
-        int option = 0;
+        int loginOption = 0;
         do{
-            option = loginUI();
+            loginOption = loginUI();
 
-            if (option == 1) 
+            if (loginOption == 1) 
             {
                 clientRegister();
-                break;
+                loginUI();
             }   
             
-            else if (option == 2) 
+            else if (loginOption == 2) 
             {
                 clientLogin();
-                break;
+                systemUI();
             }
             
             else 
@@ -52,7 +74,17 @@ public class Main {
                 System.out.println("Invalid option. Please choose again.");
                 loginUI();
             } 
-        }while (option != 1 || option != 2);
+        }while (loginOption != 1 || loginOption != 2);
+
+        int systemOption = systemUI();
+        if (systemOption == 1)
+        {
+            //create bookings and save the details in respective user text file
+        }
+        else
+        {
+            //view all bookings and a new interface for the user to update, cancel and search for certain booking
+        }
         
     }
     input.close();
