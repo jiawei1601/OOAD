@@ -1,0 +1,59 @@
+import java.util.Scanner;
+import java.util.*;
+
+public class Main {
+
+    Scanner input = new Scanner(System.in);
+
+    private int loginUI(int option)
+    {
+        // Display welcome message and options
+        System.out.println("Welcome to the e-Hailing Booking System!");
+        System.out.println("1. Register a new account");
+        System.out.println("2. Login");
+        System.out.print("Choose an option: ");
+        option = input.nextInt();
+        input.nextLine(); // Consume newline
+        return option;
+    }
+
+    private boolean clientRegister()
+    {
+        // Registration
+        System.out.println("Account has been created successfully.");
+    }
+
+    private boolean clientLogin()
+    {
+         // Login
+         System.out.println("Login successfully.");
+    }
+
+    public static void main(String[] args) 
+    {
+        int option = 0;
+        do{
+            option = loginUI();
+
+            if (option == 1) 
+            {
+                clientRegister();
+                break;
+            }   
+            
+            else if (option == 2) 
+            {
+                clientLogin();
+                break;
+            }
+            
+            else 
+            {
+                System.out.println("Invalid option. Please choose again.");
+                loginUI();
+            } 
+        }while (option != 1 || option != 2);
+        
+    }
+    input.close();
+}
