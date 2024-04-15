@@ -5,54 +5,39 @@ public class Client {
     private String email;
     private char gender;
     private String contactNumber;
-    //view, create and delete bookings waiting to be done
 
+    //get username from textfile
     public String getUsername()
     {
+        //read text file for username
         return username;
-    }
-    public void setUsername(String aUsername)
-    {
-        username = aUsername;
     }
 
 
     public String getPassword()
     {
+        //read text file for password
         return password;
-    }
-    public void setPassword(String aPassword)
-    {
-        password = aPassword;
     }
 
 
     public String getEmail()
     {
+        //read text file for email
         return email;
-    }
-    public void setEmail(String aEmail)
-    {
-        email = aEmail;
     }
 
 
     public char getGender()
     {
+        //read text file for gender
         return gender;
-    }
-    public void setGender(char aGender)
-    {
-        gender = aGender;
     }
 
 
     public String getContactNumber()
     {
+        //read text file for contact number
         return contactNumber;
-    }
-    public void setContactNumber(String aContactNumber)
-    {
-        contactNumber = aContactNumber;
     }
 }
