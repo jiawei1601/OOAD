@@ -1,0 +1,166 @@
+package assignment;
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+
+public class assignment{
+	
+	private static char option,gender,loginoption;
+	private static String name,email,password,loginemail,loginpassword;
+	private static int age;
+
+	public static void main(String [] args)
+	{
+		
+		do{
+				mpage();
+			
+			if (option=='r' ||option== 'R')
+			{
+				register();
+				clearConsole();
+				System.out.println("You had sign up successfully!");
+			}
+			
+			if(option=='l' || option=='L')
+			{
+				login();
+				
+				
+			}
+			
+		}while(option!='l'||option!='L'||loginoption=='n'||loginoption=='N');
+		
+	
+			
+
+	}
+	
+	public static void register() {
+		System.out.print("Please type in your name:\n");
+		Scanner scanner=new Scanner(System.in);
+		name=scanner.nextLine();
+		System.out.print("Please type in your age:\n");
+		scanner=new Scanner(System.in);
+		age=scanner.nextInt();
+		System.out.print("Please type in your gender(M/F):\n");
+		scanner=new Scanner(System.in);
+		gender=scanner.next().charAt(0);
+		System.out.print("Please type in your email:\n");
+		scanner=new Scanner(System.in);
+		email=scanner.nextLine();
+		System.out.print("Please type in your password:\n");
+		scanner=new Scanner(System.in);
+		password=scanner.nextLine();
+		
+		//save the profile into system and go back to the main page
+		 // Save the profile into the system by writing to a file
+        try {
+            FileWriter fw = new FileWriter("profile.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("Name: " + name);
+            bw.newLine();
+            bw.write("Age: " + age);
+            bw.newLine();
+            bw.write("Gender: " + gender);
+            bw.newLine();
+            bw.write("Email: " + email);
+            bw.newLine();
+            bw.write("Password: " + password);
+            bw.close();
+            System.out.println("Profile saved successfully!");
+        } catch (IOException e) {
+            System.out.println("Error occurred while saving profile.");
+            e.printStackTrace();
+        }
+
+    // Other methods remain the same...
+		
+	}
+	
+	public static void mpage()
+	{
+		do {
+		System.out.print("wELCOME TO E-HAILING BOOKING SYSTEM\n");
+		System.out.print("Did you want to register or log in?(R/L)\n");
+		Scanner scanner=new Scanner(System.in);
+		option=scanner.next().charAt(0);
+		clearConsole();
+		
+		if(option != 'r'&& option != 'R' && option != 'l' && option != 'L')
+		{
+			System.out.println("Please Enter the correct prompt!(R/L)");
+		}
+		
+		}while(option != 'r'&& option != 'R' && option != 'l' && option != 'L');
+		
+	}
+	
+	public static void login()
+	{
+		do
+		{
+			loginoption='n';
+			System.out.println("Please enter your log in email:");
+			Scanner scanner=new Scanner(System.in);
+			loginemail=scanner.nextLine();
+			System.out.println("Please enter your log in password:");
+			scanner=new Scanner(System.in);
+			loginpassword=scanner.nextLine();
+			//
+			
+			 boolean loginSuccessful = checkCredentials(loginemail, loginpassword);
+
+		        if (loginSuccessful) {
+		            clearConsole();
+		            System.out.println("You have logged in successfully");
+		            // Carry out next procedure after successful login
+		            break; // Exit the loop if login is successful
+		        } else {
+		            System.out.println("Email or password is incorrect!");
+		            System.out.println("Do you want to try again? (Y/N)");
+		            scanner = new Scanner(System.in);
+		            loginoption = scanner.next().charAt(0);
+		            clearConsole();
+		        }
+		    } while (loginoption == 'y' || loginoption == 'Y');
+		}
+	public static void clearConsole()
+	{
+		System.out.println("\033[H\033[2J");
+	}
+	
+	
+	public static boolean checkCredentials(String loginemail, String loginpassword) {
+	    try {
+	        FileReader fr = new FileReader("profile.txt");
+	        BufferedReader br = new BufferedReader(fr);
+	        String line;
+
+	        while ((line = br.readLine()) != null) {
+	            // Split the line into attribute and value
+	            String[] parts = line.split(":");
+	            if (parts.length == 2) {
+	                String attribute = parts[0].trim();
+	                String value = parts[1].trim();
+	                
+	                // Check if attribute is Email or Password and compare values
+	                if (attribute.equalsIgnoreCase("Email") && value.equals(loginemail)
+	                    || attribute.equalsIgnoreCase("Password") && value.equals(loginpassword)) {
+	                    br.close();
+	                    return true; // Credentials matched
+	                }
+	            }
+	        }
+	        br.close();
+	    } catch (IOException e) {
+	        System.out.println("An error occurred while reading the profile.");
+	        e.printStackTrace();
+	    }
+	    return false; // Credentials not found or file not accessible
+	}
+}
